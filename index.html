@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Simple NPS Rating Element</title>
+	<style type="text/css">
+		hr{
+			width: 100%;
+			max-width: 1200px;
+			margin: 0 auto;
+		}
+		section{
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			font-family: monospace;
+			font-size: 2rem;
+			padding: 2rem;
+		}
+		.nps-button{
+			cursor: pointer;
+			width: 4rem;
+			height: 4rem;
+			background-color: #e3e3e3;
+		}
+		.nps-button.active{
+			background-color: #a3a3a3;
+		}
+		.notes{
+			font-size: 1rem;
+			font-style: italic;
+		}
+	</style>
+</head>
+<body>
+	<section>
+		<div class="info">
+			<h1>Simple NPS Rating Element</h1>
+			<p>
+				
+			</p>
+		</div>
+		<hr/>
+		<br/>
+		<div class="elementWrapper">
+			<div class="ratings">
+			    <div class="notes">This element is not a real form element, it controls the dropdown element below, which is then consumed by your form.</div>
+			    <br/>
+			    <div class="notes">Click a numbered button, and watch the value of the dropdown element update to match.  An `.active` class is added to your selection so you can set up an alternate style.</div>
+
+			    <p>Select a rating from 1 to 10:</p>
+			    
+			    <div id="ratings-buttons">
+			        <!-- Buttons for ratings 1 through 10 -->
+			        <button class="nps-button" onclick="setRating(1)">1</button>
+			        <button class="nps-button" onclick="setRating(2)">2</button>
+			        <button class="nps-button" onclick="setRating(3)">3</button>
+			        <button class="nps-button" onclick="setRating(4)">4</button>
+			        <button class="nps-button" onclick="setRating(5)">5</button>
+			        <button class="nps-button" onclick="setRating(6)">6</button>
+			        <button class="nps-button" onclick="setRating(7)">7</button>
+			        <button class="nps-button" onclick="setRating(8)">8</button>
+			        <button class="nps-button" onclick="setRating(9)">9</button>
+			        <button class="nps-button" onclick="setRating(10)">10</button>
+			    </div>
+			    
+			    <br/>
+			    <div class="notes">This dropdown element should get a `hidden` attribute in HTML or `display: none;` in CSS so the user doesn't see it in practice.</div>
+			    <!-- Hidden dropdown to store the rating -->
+			    <select id="rating-dropdown" name="nps-rating">
+			        <option value="1">1</option>
+			        <option value="2">2</option>
+			        <option value="3">3</option>
+			        <option value="4">4</option>
+			        <option value="5">5</option>
+			        <option value="6">6</option>
+			        <option value="7">7</option>
+			        <option value="8">8</option>
+			        <option value="9">9</option>
+			        <option value="10">10</option>
+			    </select>
+			</div>	
+		</div>
+		
+	</section>
+
+	<!-- NPS Element Control Code -->
+	<script type="text/javascript">
+		function setRating(value) {
+		    // function vars
+		    var dropdown = document.getElementById('rating-dropdown');
+		    var buttonElements = document.querySelectorAll('.nps-button');
+		    var onClickThis = event.currentTarget;
+		    
+		    // Set the dropdown's value to the selected rating
+		    dropdown.value = value;
+
+		    //remove .active class from any existing active element
+		    buttonElements.forEach(element => {
+		    	//do the thing
+		    	//element.classList.add("active");
+		    	element.classList.remove("active");
+		    });
+
+		    //set an .active class on the clicked element
+		    onClickThis.classList.add("active");
+
+		    // Optionally, for debugging purposes, you can log the selected value
+		    console.log("Selected rating:", value);
+		}
+
+	</script>
+</body>
+</html>
