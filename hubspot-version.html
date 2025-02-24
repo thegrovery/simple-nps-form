@@ -1,0 +1,193 @@
+	<style type="text/css">
+		:root{
+			--form-width: 800px;
+		}
+		hr{
+			width: var(--form-width);
+			max-width: 100%;
+			margin: 1rem auto;
+			border-bottom-color: #000;
+		}
+		section{
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			font-family: monospace;
+			font-size: 2rem;
+			padding: 2rem;
+			color: #000;
+		}
+		h1{
+			color: #000;
+			font-size: 2rem;
+			text-align: center;
+		}
+
+		.info{
+			width: var(--form-width);
+			max-width: 100%;
+			padding: 0;
+		}
+
+		.npsWrapperFull label{
+			font-size: 0.8rem !important;
+			line-height: 1.2 !important;
+			display: inline-block;
+			font-family: monospace;
+		}
+
+		.elementWrapper{
+			width: var(--form-width);
+			max-width: 100%;
+			padding: 0;
+		}
+
+		#ratings-buttons{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.nps-button{
+			cursor: pointer;
+			width: 4rem;
+			height: 4rem;
+			background-color: #007B98;
+			text-align:center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			margin: 0.5rem;
+			border: 3px solid #000;
+			border-radius: 3px;
+		}
+		.nps-button.active,
+		.nps-button:hover{
+			background-color: var(--custom-orange);
+			border: 3px solid #000;
+			border-radius: 3px;
+		}
+		.notes{
+			font-size: 1rem;
+			font-style: italic;
+		}
+
+		.formWrapper{
+			color: #000;
+		}
+		.formWrapper .hs-nps_score{
+			opacity: 0;
+			pointer-events: none;
+			position: absolute;
+			top: -100px;
+			left: -100px;
+		}
+
+
+		.hbspt-form{
+			width: var(--form-width);
+			max-width: 100%;
+			padding: 0;
+		}
+		.formWrapper textarea{
+			border: solid 3px #000;
+		}
+
+		.hbspt-form .hs-form-field label{
+			color: #000 !important;
+		}
+		.hbspt-form .hs-form-field input, 
+		.hbspt-form .hs-form-field textarea{
+			border: 3px solid #000;
+			color: #000 !important;
+		}
+
+		.hs-submit{
+			pointer-events: none;
+			opacity: 0.5;
+			transition: 0.15s;
+		}
+		.hs-submit.unlocked{
+			pointer-events: auto;
+			opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<section>
+		<div class="info">
+			<h1 class="
+			">NPS Landing Page Title</h1>
+			<p>
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			</p>
+		</div>
+		
+		<hr/>
+		
+		<div class="npsWrapperFull">
+			<div class="elementWrapper">
+				<div class="ratings">
+				    <label>
+				    	Please select a number, 1-10, with 1 being the lowest satisfaction and 10 being the highest satisfaction.*
+				    </label>   
+				    <div id="ratings-buttons">
+				        <!-- Buttons for ratings 1 through 10 -->
+				        <button class="nps-button" onclick="setRating(1)">1</button>
+				        <button class="nps-button" onclick="setRating(2)">2</button>
+				        <button class="nps-button" onclick="setRating(3)">3</button>
+				        <button class="nps-button" onclick="setRating(4)">4</button>
+				        <button class="nps-button" onclick="setRating(5)">5</button>
+				        <button class="nps-button" onclick="setRating(6)">6</button>
+				        <button class="nps-button" onclick="setRating(7)">7</button>
+				        <button class="nps-button" onclick="setRating(8)">8</button>
+				        <button class="nps-button" onclick="setRating(9)">9</button>
+				        <button class="nps-button" onclick="setRating(10)">10</button>
+				    </div>
+				</div>
+			</div>
+
+			<div class="formWrapper">
+				<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+				<script>
+				  hbspt.forms.create({
+				    region: "na1",
+				    portalId: "39959608",
+				    formId: "e56932dc-0a70-42ef-986c-90ced652aa3d"
+				  });
+				</script>
+			</div>	
+		</div>
+				
+	</section>
+
+	<!-- NPS Element Control Code -->
+	<script type="text/javascript">
+		function setRating(value) {
+			console.log(value);
+		    // function vars
+		    var dropdown = document.querySelector('.hs-nps_score select');
+		    var buttonElements = document.querySelectorAll('.nps-button');
+		    var submitButton = document.querySelector('.hs-submit');
+		    var onClickThis = event.currentTarget;		    
+
+		    // Set the dropdown's value to the selected rating
+		    dropdown.value = value;
+		    
+		    //remove .active class from any existing active element
+		    buttonElements.forEach(element => {
+		    	element.classList.remove("active");
+		    });
+
+		    //set an .active class on the clicked element
+		    onClickThis.classList.add("active");
+
+		    //add .unlocked class from submit button
+		    submitButton.classList.add("unlocked");
+
+		    // Optionally, for debugging purposes, you can log the selected value
+		    console.log("Selected rating:", value);
+		}
+
+	</script>
